@@ -4,11 +4,12 @@
   "private": true,
   "main": "main.js",
   "scripts": {
-    "start": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node server.js"
   },
   "engines": {
     "node": "12.19.0"
@@ -28,6 +29,7 @@
     "lodash": "^4.17.20",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
+    "serve-static": "^1.14.1",
     "timezone-support": "^2.0.2",
     "v-debounce": "^0.1.2",
     "vue": "^2.6.11",
