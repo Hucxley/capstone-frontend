@@ -2,7 +2,7 @@ import axios from "axios";
 import Vue from "vue";
 
 const instance = axios.create({
-  baseURL: "https://agile-springs-79985.herokuapp.com/api/v1"
+  baseURL: "http://cors-anywhere.herokuapp.com/https://agile-springs-79985.herokuapp.com/api/v1"
 });
 
 export default {
