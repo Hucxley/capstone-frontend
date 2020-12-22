@@ -15,7 +15,9 @@ export default {
         data: data,
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          "content-type": "application/json"
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*'
         },
         validateStatus: function(status) {
           return status < 501; // resolve promise if error < 501
