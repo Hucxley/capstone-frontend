@@ -129,11 +129,21 @@ export default {
             }
           }
         }
-        let startMonth = format(parseISO(new Date(appointments[0].start).toISOString()), "LLLL")
-        let endMonth = format(parseISO(new Date(appointments[appointments.length - 1]).toISOString()), "LLLL")
-        let year = format(parseISO(new Date(appointments[appointments.length - 1]).toISOString()), "yyyy")
+        let startMonth = ''
+        let endMonth = ''
+        let year = ''
+        if(!this.startMonth && !this.endMonth){
+          startMonth = format(parseISO(new Date(appointments[0].start).toISOString()), "LLLL")
+          year = format(parseISO(new Date(appointments[0].start).toISOString()), "yyyy")
 
-        this.updateStatus.message = `${n} Appointments Added from ${startMonth} to ${endMonth} ${year}`
+          this.updateStatus.message = `${n} Appointments Added beginning in ${startMonth} ${year}`
+        }else{
+          startMonth = this.startMonth.name
+          year = format(parseISO(new Date(appointments[0].start).toISOString()), "yyyy")
+          endMonth = this.endMonth.name
+          this.updateStatus.message = `${n} Appointments Added from ${startMonth} to ${endMonth}`
+        }
+
         this.showUpdateStatus = true
       }
     },
