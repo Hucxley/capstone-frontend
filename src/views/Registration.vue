@@ -57,6 +57,18 @@
       <v-btn @click="cancel">
         cancel
       </v-btn>
+      <v-alert
+          :value="showFailureAlert"
+          dense
+          prominent
+          text
+          border="left"
+          type="error"
+          dismissible
+          transition="expand-transition"
+      >
+        Unable to create account for <strong>{{ name }}</strong>! Please <strong>Contact Us</strong>, or enter a different name.
+      </v-alert>
     </form>
   </v-container>
 </template>
@@ -129,7 +141,9 @@ export default {
       checkbox: false,
       userGroups: null,
       submitStatus: "PENDING",
-      subscriberId: ""
+      subscriberId: "",
+      showFailureAlert: false,
+
     };
   },
   methods: {
@@ -140,8 +154,7 @@ export default {
         (await this.$auth.getIdToken()) || this.$auth.getAccessToken();
     },
     async getFakeProfile() {
-      let randoURL =
-        "https://randomuser.me/api/?inc=name,%20email,%20phone,%20picture&nat=us&noinfo";
+      let randoURL = "https://randomuser.me/api/?inc=name,%20email,%20phone,%20picture&nat=us&noinfo";
       try {
         let response = await axios.get(randoURL);
         if (response) {
@@ -177,12 +190,14 @@ export default {
       try {
         await api.execute("post", `/user/create`, newUser).then(response => {
           console.log(response);
-          if (response) {
+          if (response.id) {
             id = response.id;
             this.currentUser = response;
             this.$store.commit("updateUser", response);
             this.$store.commit("updatePrimaryRole", response.primaryRole);
             this.$router.push({ path: `/profile/${id}` });
+          }else{
+            this.showFailureAlert = true
           }
         });
       } catch (e) {
