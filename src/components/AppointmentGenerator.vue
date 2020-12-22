@@ -177,9 +177,14 @@ export default {
       return {"start": null, "services": [{"id": null}], "employee": {"id": null}, "customer": {"id": null,}}
     },
     createRandomAppointment(){
+      let year = 2020
       let appointment = this.getEmptyAppointment()
-      let year = this.getRandom(2021, 2021)
       let month = this.getRandom(this.startMonth.value, this.endMonth.value)
+      if(month >= this.startMonth.value > 10){
+        year = 2020
+      }else{
+        year = 2021
+      }
       let day = this.getRandom(1, getDaysInMonth(new Date(year, month)))
       let hour = this.getRandom(9, 16)
       let minute = this.getRandom(0, 59)
