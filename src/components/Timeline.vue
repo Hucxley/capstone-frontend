@@ -79,7 +79,7 @@
                         >mdi-check-bold</v-icon>
                       </v-btn>
 
-                        <v-btn v-if="(isAdmin || isEmployee) && (!event.canceled && !event.requested && !event.completed)"
+                        <v-btn v-if="(isAdmin || isEmployee) && (!event.canceled || !event.requested || !event.completed)"
                                x-small color="blue-grey darken-4" dark elevation="3"
                                :icon="$vuetify.breakpoint.lgAndDown"
                                :class="$vuetify.breakpoint.xl ? 'ma-1 white--text' : 'mx-1 px-1'"
