@@ -191,9 +191,8 @@ export default {
       this.showDialogDelete = false;
     },
 
-    deleteItem(editedUser) {
-      this.canDeleteUser(editedUser.id);
-      this.showDialogeDelete = true;
+    deleteItem() {
+        this.showDialogeDelete = true;
     },
 
     async save() {

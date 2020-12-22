@@ -179,8 +179,10 @@ export default {
     createRandomAppointment(){
       let year = 2020
       let appointment = this.getEmptyAppointment()
-      let month = this.getRandom(this.startMonth.value, this.endMonth.value)
-      if(month >= this.startMonth.value > 10){
+      let startMonth = this.startMonth ? this.startMonth.value : 11
+      let endMonth = this.endMonth ? this.endMonth.value : 11
+      let month = this.getRandom(startMonth, endMonth)
+      if(month > 10){
         year = 2020
       }else{
         year = 2021
