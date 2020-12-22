@@ -119,10 +119,11 @@ export default {
           appointment.customer.id = randomCustomerId
           appointment.employee.id = randomEmployeeId
           appointment.services = [randomService]
+          console.log(appointment)
           if(!isSunday(appointment.start) && !isMonday(appointment.start)){
             let savedAppointment = await this.saveAppointment(appointment)
             if(!savedAppointment.id){
-              this.stepper(appointment)
+              console.log(appointment)
             }else if(savedAppointment.id){
               appointments.push(savedAppointment)
             }
