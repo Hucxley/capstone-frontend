@@ -268,8 +268,8 @@ export default {
             let endTime = new Date(appointment.end).getTime();
             if(isSameDay(appointmentDate, startDate) || isAfter(appointmentDate, startDate)) {
               if (isBefore(appointmentDate, this.endDate) || isSameDay(appointmentDate, endDate)) {
-                appointment.startDisplay = format(startTime - offsetMillis, "hh:mma")
-                appointment.endDisplay = format(endTime - offsetMillis, "hh:mma")
+                appointment.startDisplay = format(startTime - offsetMillis, "h:mma")
+                appointment.endDisplay = format(endTime - offsetMillis, "h:mma")
                 if(this.isAdmin){
                   appointments.push(appointment)
                 }else{
@@ -303,8 +303,8 @@ export default {
             let endTime = new Date(appointment.end).getTime();
             if(isSameDay(appointmentDate, startDate) || isAfter(appointmentDate, startDate)) {
               if (isBefore(appointmentDate, endDate) || isSameDay(appointmentDate, endDate)) {
-                appointment.startDisplay = format(startTime - offsetMillis, "hh:mma")
-                appointment.endDisplay = format(endTime - offsetMillis, "hh:mma")
+                appointment.startDisplay = format(startTime - offsetMillis, "h:mma")
+                appointment.endDisplay = format(endTime - offsetMillis, "h:mma")
                 if(this.isAdmin){
                   appointments.push(appointment)
                 }else{
