@@ -54,7 +54,7 @@
 
 <script>
 import api from "@/api";
-import { getDaysInMonth, isSunday, isMonday } from 'date-fns'
+import { getDaysInMonth, isSunday, isMonday, parseISO, format } from 'date-fns'
 
 let _ = require('lodash')
 
@@ -129,7 +129,11 @@ export default {
             }
           }
         }
-        this.updateStatus.message = `${n} Appointments Added from ${this.startMonth.name} to ${this.endMonth.name} 2021`
+        let startMonth = format(parseISO(new Date(appointments[0].start).toISOString()), "LLLL")
+        let endMonth = format(parseISO(new Date(appointments[appointments.length - 1]).toISOString()), "LLLL")
+        let year = format(parseISO(new Date(appointments[appointments.length - 1]).toISOString()), "yyyy")
+
+        this.updateStatus.message = `${n} Appointments Added from ${startMonth} to ${endMonth} ${year}`
         this.showUpdateStatus = true
       }
     },
