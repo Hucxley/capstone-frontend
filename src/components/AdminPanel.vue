@@ -46,7 +46,7 @@ import AppointmentGenerator from "@/components/AppointmentGenerator";
 
 export default {
   name: "AdminPanel",
-  components: {ProfileAppointmentsView, ServiceList, UserList, AppointmentGenerator, Reports },
+  components: {ProfileAppointmentsView, ServiceList, UserList, AppointmentGenerator },
   props: ['activePanel'],
   computed: {
     currentUser() {
