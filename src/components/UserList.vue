@@ -155,7 +155,7 @@
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2" @click="viewProfile(item)">mdi-eye</v-icon>
         <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
-        <v-icon small class="mr-2" @click="deleteItem(item)" v-if="isAdmin">mdi-delete</v-icon>
+        <v-icon small class="mr-2" @click="deleteItem(item)" v-if="userIsAdmin">mdi-delete</v-icon>
       </template>
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize">Reset</v-btn>
@@ -171,7 +171,7 @@ export default {
   name: "UserList",
   data() {
     return {
-      isAdmin: this.$store.state.primaryRole == "Admin",
+      isAdmin: this.userIsAdmin,
       dialog: false,
       dialogDelete: false,
       headers: [
