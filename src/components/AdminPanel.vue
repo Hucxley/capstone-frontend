@@ -41,7 +41,6 @@
 <script>
 import UserList from "@/components/UserList"
 import ServiceList from "@/components/ServiceList"
-import Reports from "@/components/Reports"
 import ProfileAppointmentsView from "@/components/ProfileAppointmentsView";
 import AppointmentGenerator from "@/components/AppointmentGenerator";
 
