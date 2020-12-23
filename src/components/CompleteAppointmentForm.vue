@@ -103,7 +103,7 @@ export default {
     initialize(){
       this.employee = this.appointment.employee
       this.customer = this.appointment.customer
-      this.service = this.appointment.services[0]
+      this.service = this.appointment.services
       this.startDisplay = this.appointment.startDisplay
       this.endDisplay = this.appointment.endDisplay
       if(this.service.fixedPrice){
