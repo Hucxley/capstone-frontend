@@ -79,7 +79,7 @@
                         >mdi-check-bold</v-icon>
                       </v-btn>
 
-                        <v-btn v-if="(isAdmin || isEmployee) && (!event.canceled || !event.requested || !event.completed)"
+                        <v-btn v-if="(isAdmin || isEmployee) && !event.confirmed"
                                x-small color="blue-grey darken-4" dark elevation="3"
                                :icon="$vuetify.breakpoint.lgAndDown"
                                :class="$vuetify.breakpoint.xl ? 'ma-1 white--text' : 'mx-1 px-1'"
@@ -289,6 +289,7 @@ export default {
       this.mapAgenda(this.timelineAgenda)
     },
     mapAgenda(list) {
+      let currentUser = this.getCurrentUser
       let newList = []
       if (list) {
         list.forEach(item => {
@@ -297,7 +298,7 @@ export default {
           let startTime = new Date(item.start).getTime()
           let endTime = new Date(item.end).getTime();
           item.canCancel = this.canCancel(item)
-          item.toApprove = item.requested && (this.isAdmin || this.activeUser.id === item.employee.id)
+          item.toApprove = item.requested && (this.isAdmin || currentUser.id === item.employee.id)
           item.startDisplay = format(startTime - offsetMillis, "h:mmaa")
           item.endDisplay = format(endTime - offsetMillis, "h:mmaa")
           item.name = item.services.name

@@ -1,5 +1,17 @@
 <template>
   <v-container class="mx-0 my-0 py-0" fluid>
+    <v-alert
+        :value="showFailureAlert"
+        dense
+        prominent
+        text
+        border="left"
+        type="error"
+        dismissible
+        transition="expand-transition"
+    >
+      Unable to delete account for <strong>{{ editedUser.name }}</strong>! Please ensure that all pending appointments have been canceled.
+    </v-alert>
     <v-data-table
       :headers="headers"
       :items="users"
@@ -211,7 +223,8 @@ export default {
         profilePhotoUrl: "",
         userRoles: []
       },
-      search: ""
+      search: "",
+      showFailureAlert: false,
     };
   },
 
@@ -286,10 +299,11 @@ export default {
       let id = this.users[this.editedIndex].id;
       try {
         let response = await api.execute("delete", `/user/${id}/delete`);
-        if (response) {
-          console.log(response)
+        if (response === "Successfully deleted the provided user") {
           this.users.splice(this.editedIndex, 1);
           console.log(response);
+        }else{
+          this.showFailureAlert = true
         }
       } catch (e) {
         console.log(e);
